@@ -35,11 +35,6 @@ build_script:
 test_script:
 - cmd: dotnet test Tests\Cosmos.TestRunner.UnitTest\Cosmos.TestRunner.UnitTest.csproj --logger "trx;LogFileName=c:\Cosmos\TestResult.xml"
 
-on_finish:
-- ps: |
-    $wc = New-Object 'System.Net.WebClient'
-    $wc.UploadFile("https://ci.appveyor.com/api/testresults/mstest/$($env:APPVEYOR_JOB_ID)", "c:\Cosmos\TestResult.xml")
-
 notifications:
 - provider: Webhook
   url: https://webhooks.gitter.im/e/d5c57ffb9a04b1b180be
